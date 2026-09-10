@@ -1,0 +1,47 @@
+from typing import List, Dict
+
+
+class DeviceManager:
+    """
+    RecoverAI Device Manager.
+
+    مسؤول عن إدارة الأجهزة المتصلة واكتشاف معلوماتها
+    ضمن الحدود المسموح بها من نظام التشغيل.
+    """
+
+    def __init__(self):
+        self.devices: List[Dict] = []
+
+    def list_devices(self) -> List[Dict]:
+        """
+        إرجاع قائمة الأجهزة المكتشفة حاليًا.
+        """
+        return self.devices
+
+    def add_device(
+        self,
+        device_id: str,
+        device_type: str,
+        name: str = "Unknown Device",
+    ) -> Dict:
+        """
+        إضافة جهاز إلى جلسة RecoverAI.
+        """
+        device = {
+            "device_id": device_id,
+            "type": device_type,
+            "name": name,
+            "status": "connected",
+        }
+
+        self.devices.append(device)
+        return device
+
+    def clear_devices(self) -> None:
+        """
+        مسح قائمة الأجهزة الحالية.
+        """
+        self.devices.clear()
+
+
+device_manager = DeviceManager()
